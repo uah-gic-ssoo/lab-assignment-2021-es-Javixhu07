@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
         }
 
         /**
-         * TODO: Create a child process that will:
+         * TO DO: Create a child process that will:
          *   - Print a message showing what part it will download (mostly for
          *   debugging purposes (i.e. printf("\t chunk #%d: Range %d-%d \n", i, from, to))
          *   - Generate the name of the file for the current chunk, following
@@ -68,7 +68,16 @@ int main(int argc, char* argv[]) {
          *   - Call download_fragment(TARGET_URL, from, to, outfile); 
          *   - exit(0);
          */
-
+        
+        int pid = fork();
+        if (pid == 0) {
+        	printf("\t chunk #%d: Range %d-%d \n", i, from, to);
+        	char outfile [23]; 
+        	sprintf(outfile, "%s-%d", CHUNK_FILENAME_PREFIX, i);
+        	download_fragment(TARGET_URL, from, to, outfile); 
+        	exit(0);
+        	
+        }
 
         if (download_mode == 'S') {
             /**
@@ -76,6 +85,7 @@ int main(int argc, char* argv[]) {
              * downloading the current chunk if the download mode is S
              * (sequential)
              */
+             wait(NULL);
         }
     }
 
@@ -84,6 +94,9 @@ int main(int argc, char* argv[]) {
          * TODO: wait until all the downloads have finished if the download mode
          * is P (parallel)
          */
+         for (i=1; i <= num_processes; i++){
+         	wait(NULL);
+         }
     }
     printf ("-- End downloader --\n");
 }
