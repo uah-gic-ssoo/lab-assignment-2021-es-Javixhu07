@@ -29,8 +29,8 @@ void * thread_function(void * data) {
       srand48_r(time(NULL), &rand_buffer);
       int i;
       for(i = 0; i<points; i++){
-      		drand48_r(&rand_buffer, &x);
-      		drand48_r(&rand_buffer, &y);
+      		drand48_r(&rand_buffer, &valorx);
+      		drand48_r(&rand_buffer, &valory);
       		if(valorx*valorx+valory*valory<=1){
       			count ++;
       		}
