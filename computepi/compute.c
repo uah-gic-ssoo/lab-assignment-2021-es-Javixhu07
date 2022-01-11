@@ -72,7 +72,7 @@ void compute(int npoints, int nthreads) {
     /* TO DO: print the ratio of points that meet the criteria */
 
     /* The following print string can be used to print the calculated value:
-     *Easter Egg  Profe :D
+     * easter Egg  Profe :D
      * printf("%.8f\n", VALUE_OF_PI);
      * where VALUE_OF_PI is the floating-point value to be printed.
      */
