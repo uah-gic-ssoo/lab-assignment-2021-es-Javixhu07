@@ -1,12 +1,11 @@
+/*Importaciones*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-
 #include "compute.h"
 
 /* Number of hits */
 unsigned int hits;
-
 /* Mutex Semaphore */
 pthread_mutex_t mutex;
 
@@ -15,7 +14,6 @@ void * thread_function(void * data) {
 
     /* The input variable contains the number of points that the thread must
      * calculate */
-     
     int points = *((int *)data);
     
     /* The local variable that shall be used to store the number of points within
@@ -25,16 +23,16 @@ void * thread_function(void * data) {
     /* TO DO: Implement the loop that obtains the random points and counts how
      * many of those lay within the circumference of radius 1 */
       
-      double x;
-      double y;
+      double valorx;
+      double valory;
       struct drand48_data rand_buffer;
       srand48_r(time(NULL), &rand_buffer);
       int i;
       for(i = 0; i<points; i++){
       		drand48_r(&rand_buffer, &x);
       		drand48_r(&rand_buffer, &y);
-      		if(x*x+y*y<=1){
-      			contador +=1;
+      		if(valorx*valorx+valory*valory<=1){
+      			count ++;
       		}
       
       }			
